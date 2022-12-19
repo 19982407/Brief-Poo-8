@@ -1,0 +1,268 @@
+.nav-container {
+  background-color: black;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+}
+
+nav.menu {
+  display: flex;
+}
+
+ul {
+  list-style-type: none;
+
+}
+
+ul.navbar li {
+  display: inline;
+}
+
+.main-container {
+  height: 1200px;
+}
+
+.logo,
+.navbar {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+nav a {
+  text-decoration: none;
+  color: #112e51;
+}
+
+ul.navbar {
+  display: flex;
+}
+
+ul.navbar>li a {
+    padding: 8px;
+    border: 1px solid transparent;
+    background: #000000;
+    border-radius: 8px;
+    color: white;
+
+}
+
+ul.navbar>li a:hover {
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 8px;
+
+
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+* {
+
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  transition: 0.3s;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  position: relative;
+  margin: 0;
+}
+h2{
+  font-size: xx-large;
+  text-align: center;
+}
+.erore {
+  font-weight: bold;
+  display: block;
+  color: #ff7c7c;
+}
+.rad{
+  margin: 15px;
+}
+form {
+  width: 100%;
+  padding: 2em;
+  grid-area: form;
+  font-size: large;
+}
+form p {
+  display: none;
+  margin-top: 0;
+}
+form label {
+  font-size: large;
+}
+form input[type="text"] , input[type="date"],  select {
+  color: rgba(6, 6, 6, 0.5);
+    background: #f3f2f6;
+    border: 2px solid #f3f2f6;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 46px;
+    padding: 0 0 0 20px;
+    width: 100%;
+    border-radius: 25px;
+    box-sizing: border-box;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+ form select {
+     padding: 20px;
+}
+form button {
+  padding: 1em 3em;
+  margin: 1em 0 0 0;
+  border: none;
+  color: white;
+  background-color: #125802;
+}
+form button:hover {
+  background-color: rgb(133, 254, 176);
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+form input[type="radio"] {
+  cursor: pointer;
+}
+form fieldset {
+  margin-bottom: 1em;
+}
+#save {
+  display: none;
+  background-color: red;
+  color: black;
+}
+#save:hover {
+  background-color: rgba(255, 0, 0, 0.769);
+  color: white;
+}
+.rowx{
+  display: flex;
+}
+
+
+
+.tablx{
+  display: flex;
+  justify-content: center;
+
+}
+table {
+  text-align: center;
+}
+table th {
+  color: white;
+  background-color: #c4abf6;
+}
+table,
+tr,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table tr th,
+td {
+  padding: 0.5em 2em;
+}
+table button {
+  height: 3em;
+  padding: 5px 10px;
+  margin: 1px;
+  width: 100%;
+  cursor: pointer;
+}
+.add {
+  color: white;
+  background-color: #2ab603;
+  border-radius: 10px;
+}
+.add:hover {
+  color: white;
+  background-color: black;
+}
+.remove {
+  color: black;
+  background-color: rgb(255 0 0);
+  font-weight: bold;
+  border-radius: 10px;
+}
+.remove:hover {
+  color: white;
+  background-color: rgb(117, 3, 3);
+}
+
+#modaleremove {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: none;
+}
+.container {
+  border-radius: 30px;
+  color: white;
+  grid-column-start: 2;
+  grid-row-start: 3;
+  text-align: center;
+  background-color: #090909;
+  padding: 2em;
+}
+#allbutton button {
+  height: 3em;
+}
+#allbutton {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: "cancel cancel delte delte";
+}
+#cancel {
+  grid-area: cancel;
+  color: white;
+  background-color: #722076;
+  border-radius: 10px;
+}
+#delete {
+    border-radius: 10px;
+    grid-area: delte;
+    color: white;
+    background-color: #ab0202;
+}
+#modaleadd {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  position: fixed;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: none;
+}
+#mod-add {
+  font-size: x-large;
+  margin-bottom: 1em;
+  line-height: 2em;
+  text-align: justify;
+}
+#hide {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  background-color: #00ff36;
+  border-radius: 10px;
+  border: 4px solid #0707b8;
+}
+

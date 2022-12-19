@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+    <script src="indexScript.js" defer></script>
+    <title>Produit</title>
+</head>
+<body>
+
+    <div class="nav-container">
+        <nav class="menu">
+            <ul class="navbar">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <h2> <u>Safaa Cosmétique</u></h2>
+
+    <form>
+        <fieldset>
+        <legend>Produit</legend>
+        <label for="name">Nom</label><br> <input id="name" type="text"><br>
+        <p id="errorName"> * Remplir le champ </p>
+        <label for="marque">Marque</label><br><input type="text" id="marque"><br>
+        <p id="errorMarque">* Remplir le champ</p>
+        <label for="prix">Prix</label><br> <input type="text" id="prix"><br>
+        <p id="errorPrix">* Remplir le champ</p>
+        <label for="production date">Date de production</label><br>
+        <input type="date" id="production_date"><br><p id="errorDate">* Remplir le champ</p>
+        <label for="type">Type</label><br>
+        <select name="type" id="type">
+            <option value="Hygiène et toilette">hygiène et toilette</option>
+            <option value="Soins esthétiques">soins esthétiques</option>
+            <option value="Produits solaires">produits solaires</option>
+            <option value="Beauté des mains et des pieds"> beauté des mains et des pieds</option>
+            <option value="Produits de maquillage">produits de maquillage</option>
+            <option value="Entretien capillaires">entretien capillaires</option>
+            <option value="Parfums">parfums</option>
+        </select>
+        <p id="errorSelec">Remplir le champs</p>
+        <div id="radioCheck">
+            <label>Et en promotion :</label>    
+            <div class="radio">
+                <label for="yes"><input value="yes" type="radio" name="radioCheck" id="yes">oui</label>
+                <label for="no"><input value="no" type="radio" name="radioCheck" id="no">non</label>
+            </div>
+        </div>
+        <p id="errorRadio">* Remplir le champs  </p>
+        <button id="button" type="button">Ajouter</button>
+        <button type="button" id="save">sauvegarder</button>
+    </fieldset>
+    </form>
+ <hr>
+        <h2>Les Produits</h2>
+        <div class="tablx">
+        <table id="tab">
+            <tr>
+                <th>Nom</th>
+                <th>marque</th>
+                <th>prix</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>En promotion</th>
+                <th>Action</th>
+            </tr>
+        </table>
+
+    </div>
+    <div id="modaleremove">
+        <div class="container">
+            <h1>Supprimer le produit</h1>
+            <p>êtes-vous sûr de vouloir supprimer?</p>
+            <div id="allbutton">
+                <button id="cancel">Annuler</button>
+                <button id="delete" value="delte">Supprimer</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</body>
+
+</html>
