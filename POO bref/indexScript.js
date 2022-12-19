@@ -1,5 +1,5 @@
 // ______________________________ class _________________________________//
-class product {
+class Item {
   constructor(name, marque, prix, date, type, radioCheck) {
     this.name = name;
     this.marque = marque;
@@ -20,7 +20,7 @@ class product {
     };
   }
 }
-// ____________________ localstorag  _________________________________//
+// ____________________ localstorage _________________________________//
 function allStorage() {
   let values = []
     keys = Object.keys(localStorage)
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
   sorttab();
 })
-// ___________________________________________________________//
+// _______________________ validation____________________________________//
 function checkP() {
   let p = document.querySelectorAll("form p");
   let result = true;
@@ -71,7 +71,7 @@ function resetform() {
     radioCheck[i].checked = false;
   }
 }
-// _______________________ validation regex ____________________________________//
+// _______________________ Regex ____________________________________//
 function checkName(name) {
   let nameRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
   let validename = nameRex.test(name);
@@ -94,7 +94,7 @@ function getpromo(listpromo) {
     }
   }
 }
-// ________________________ input _____________________
+// ________________________ input _____________________//
 function inputvalue() {
   let name = document.getElementById("name").value;
   let marque = document.getElementById("marque").value;
@@ -158,7 +158,7 @@ function validation(item) {
   }
   return item;
 }
-// ____________________ add ____________________
+// ____________________ Ajouter ____________________//
 let id = 0;
 document.getElementById("button").onclick = function (e) {
   validation(inputvalue());
@@ -184,7 +184,7 @@ function modaleadd() {
   document.getElementById("modaleadd").style.display = "block";
   document.getElementById("modaleadd").style.display = "grid";
 }
-// ____________________________________ delete ____________________________________//
+// ____________________________________ Supprimer ____________________________________//
 function remove(that) {
   modaleremove();
   document.getElementById("delete").onclick = function () {
@@ -210,7 +210,7 @@ function modaleremove() {
   document.getElementById("modaleremove").style.display = "block";
   document.getElementById("modaleremove").style.display = "grid";
 }
-// _________________________________ edit_______________________//
+// _________________________________ edit_______________________
 function edit(that) {
   let save = document.getElementById("save");
   let button = document.getElementById("button");
