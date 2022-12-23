@@ -7,6 +7,9 @@ class Item {
     this.date = date;
     this.type = type;
     this.radioCheck = radioCheck;
+    this.details = function () {
+      return ` <u>Detail du produit</u>  <br>Nom  :  ${this.name}<br>Marque :  ${this.marque}<br>Date : ${this.date}<br>Type: ${this.type}<br>Et en promotion : ${this.radioCheck}`;
+    };
     this.tab = function () {
       return [
         this.name,
@@ -15,35 +18,17 @@ class Item {
         this.date,
         this.type,
         this.radioCheck,
-        `<div class="rowx"><button id="remove${id}" onclick='remove(this)' class="remove">Remove</button><button onclick='edit(this);' id="add${id}" class="add">Edite</button></div>`,
+        `<div class="rowx"><button id="remove${id}" onclick='remove(this)' class="remove">Supprimer</button><button onclick='edit(this);' id="add${id}" class="add">Edit</button></div>`,
       ];
     };
   }
 }
-// ____________________ localstorage _________________________________//
-function allStorage() {
-  let values = []
-    keys = Object.keys(localStorage)
-    i = keys.length;
-  while (i--) {
-    values.push(JSON.parse(localStorage.getItem(keys[i])));
-  }
-  return values;
-}
-window.addEventListener("DOMContentLoaded", function () {
-  allStorage();
-  for (let i = 0; i < allStorage().length; i++) {
-    save(allStorage()[i]);
-    id++;
-  }
-  sorttab();
-})
-// _______________________ validation____________________________________//
+// _______________________ validation ____________________________________//
 function checkP() {
   let p = document.querySelectorAll("form p");
   let result = true;
   for (let i = 0; i < p.length; i++) {
-    if (p[i].classList.contains("erore")) {
+    if (p[i].classList.contains("error")) {
       return (result = false);
     }
   }
@@ -64,14 +49,15 @@ function resetform() {
   let name = (document.getElementById("name").value = "");
   let marque = (document.getElementById("marque").value = "");
   let prix = (document.getElementById("prix").value = "");
-  let date = (document.getElementById("production_date").value = "");
+  let date = (document.getElementById("date_de_production").value = "");
   let select = (document.getElementById("type").value = "");
   let radioCheck = document.getElementsByName("radioCheck");
   for (let i = 0; i < radioCheck.length; i++) {
     radioCheck[i].checked = false;
   }
 }
-// _______________________ Regex ____________________________________//
+
+// _______________________ Regex validation ____________________________________//
 function checkName(name) {
   let nameRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
   let validename = nameRex.test(name);
@@ -94,12 +80,13 @@ function getpromo(listpromo) {
     }
   }
 }
+
 // ________________________ input _____________________//
 function inputvalue() {
   let name = document.getElementById("name").value;
   let marque = document.getElementById("marque").value;
   let prix = document.getElementById("prix").value;
-  let date = document.getElementById("production_date").value;
+  let date = document.getElementById("date_de_production").value;
   let select = document.getElementById("type").value;
   let radioCheck = document.getElementsByName("radioCheck");
   let item;
@@ -113,8 +100,8 @@ function inputvalue() {
   ));
   
 }
-// ______________________________ date max value __________________//
-production_date.max = new Date().toLocaleDateString("en-ca");
+// ______________________________ Date maximum value __________________//
+date_de_production.max = new Date().toLocaleDateString("en-ca");
 // ______________________________ validation ___________________________//
 function validation(item) {
   // validation
@@ -125,40 +112,65 @@ function validation(item) {
   let check = true;
   while (check) {
     if (checkName(item.name)) {
-      document.getElementById("errorName").classList.remove("erore");
+      document.getElementById("errorName").classList.remove("error");
     } else {
-      document.getElementById("errorName").classList.add("erore");
+      document.getElementById("errorName").classList.add("error");
     }
     if (checkmarque(item.marque)) {
-      document.getElementById("errorMarque").classList.remove("erore");
+      document.getElementById("errorMarque").classList.remove("error");
     } else {
-      document.getElementById("errorMarque").classList.add("erore");
+      document.getElementById("errorMarque").classList.add("error");
     }
     if (checkprix(item.prix)) {
-      document.getElementById("errorPrix").classList.remove("erore");
+      document.getElementById("errorPrix").classList.remove("error");
     } else {
-      document.getElementById("errorPrix").classList.add("erore");
+      document.getElementById("errorPrix").classList.add("error");
     }
     if (item.date == "") {
-      document.getElementById("errorDate").classList.add("erore");
+      document.getElementById("errorDate").classList.add("error");
     } else {
-      document.getElementById("errorDate").classList.remove("erore");
+      document.getElementById("errorDate").classList.remove("error");
     }
     if (item.radioCheck == undefined) {
-      document.getElementById("errorRadio").classList.add("erore");
+      document.getElementById("errorRadio").classList.add("error");
     } else {
-      document.getElementById("errorRadio").classList.remove("erore");
+      document.getElementById("errorRadio").classList.remove("error");
     }
     if (item.select == "") {
-      document.getElementById("errorSelec").classList.add("erore");
+      document.getElementById("errorSelec").classList.add("error");
     } else {
-      document.getElementById("errorSelec").classList.remove("erore");
+      document.getElementById("errorSelec").classList.remove("error");
     }
     check = false;
   }
   return item;
 }
-// ____________________ Ajouter ____________________//
+// ____________________________________ L'ordre alphabétique __________________________//
+function sorttab() {
+  let tab, rows, switching, i, x, y, shouldSwitch, cont;
+  tab = document.getElementById("tab");
+  switching = true;
+  cont = 0
+  while (switching) {
+    switching = false;
+    rows = tab.rows;
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      cont++
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+// ____________________ Ajouter ____________________
 let id = 0;
 document.getElementById("button").onclick = function (e) {
   validation(inputvalue());
@@ -183,6 +195,7 @@ document.getElementById("button").onclick = function (e) {
 function modaleadd() {
   document.getElementById("modaleadd").style.display = "block";
   document.getElementById("modaleadd").style.display = "grid";
+  document.getElementById("mod-add").innerHTML = inputvalue().details();
 }
 // ____________________________________ Supprimer ____________________________________//
 function remove(that) {
@@ -210,7 +223,7 @@ function modaleremove() {
   document.getElementById("modaleremove").style.display = "block";
   document.getElementById("modaleremove").style.display = "grid";
 }
-// _________________________________ edit_______________________
+// _________________________________ Editer _______________________
 function edit(that) {
   let save = document.getElementById("save");
   let button = document.getElementById("button");
@@ -250,3 +263,21 @@ function edit(that) {
     resetform();
   }
 }
+// ____________________ localstorag  _________________________________//
+function allStorage() {
+  let values = []
+    keys = Object.keys(localStorage)
+    i = keys.length;
+  while (i--) {
+    values.push(JSON.parse(localStorage.getItem(keys[i])));
+  }
+  return values;
+}
+window.addEventListener("DOMContentLoaded", function () {
+  allStorage();
+  for (let i = 0; i < allStorage().length; i++) {
+    save(allStorage()[i]);
+    id++;
+  }
+  sorttab();
+});
