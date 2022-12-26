@@ -56,32 +56,7 @@ function resetform() {
     radioCheck[i].checked = false;
   }
 }
-
-// _______________________ Regex validation ____________________________________//
-function checkName(name) {
-  let nameRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
-  let validename = nameRex.test(name);
-  return validename;
-}
-function checkmarque(marque) {
-  let marqueRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
-  let validemarque = marqueRex.test(marque);
-  return validemarque;
-}
-function checkprix(prix) {
-  let prixRex = /^(^\d+([,.]?\d+$)?)$/;
-  let valideprix = prixRex.test(prix);
-  return valideprix;
-}
-function getpromo(listpromo) {
-  for (let i = 0; i < listpromo.length; i++) {
-    if (listpromo[i].checked) {
-      return listpromo[i].value;
-    }
-  }
-}
-
-// ________________________ input _____________________//
+// ________________________ inputvalue _____________________//
 function inputvalue() {
   let name = document.getElementById("name").value;
   let marque = document.getElementById("marque").value;
@@ -104,11 +79,9 @@ function inputvalue() {
 date_de_production.max = new Date().toLocaleDateString("en-ca");
 // ______________________________ validation ___________________________//
 function validation(item) {
-  // validation
   checkName(item.name);
   checkmarque(item.marque);
   checkprix(item.prix);
-  // condition
   let check = true;
   while (check) {
     if (checkName(item.name)) {
@@ -145,7 +118,7 @@ function validation(item) {
   }
   return item;
 }
-// ____________________________________ L'ordre alphabétique __________________________//
+// ____________________________________ L'ordre alphabétique (SORT) __________________________//
 function sorttab() {
   let tab, rows, switching, i, x, y, shouldSwitch, cont;
   tab = document.getElementById("tab");
@@ -170,7 +143,7 @@ function sorttab() {
     }
   }
 }
-// ____________________ Ajouter ____________________
+// ____________________ Ajouter ____________________//
 let id = 0;
 document.getElementById("button").onclick = function (e) {
   validation(inputvalue());
@@ -222,6 +195,29 @@ document.getElementById("cancel").onclick = function () {
 function modaleremove() {
   document.getElementById("modaleremove").style.display = "block";
   document.getElementById("modaleremove").style.display = "grid";
+}
+// _______________________ Regex validation ____________________________________//
+function checkName(name) {
+  let nameRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
+  let validename = nameRex.test(name);
+  return validename;
+}
+function checkmarque(marque) {
+  let marqueRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
+  let validemarque = marqueRex.test(marque);
+  return validemarque;
+}
+function checkprix(prix) {
+  let prixRex = /^(^\d+([,.]?\d+$)?)$/;
+  let valideprix = prixRex.test(prix);
+  return valideprix;
+}
+function getpromo(listpromo) {
+  for (let i = 0; i < listpromo.length; i++) {
+    if (listpromo[i].checked) {
+      return listpromo[i].value;
+    }
+  }
 }
 // _________________________________ Editer _______________________
 function edit(that) {
