@@ -259,7 +259,7 @@ function edit(that) {
     resetform();
   }
 }
-// ____________________ localstorag  _________________________________//
+// ____________________ localstorage  _________________________________//
 function allStorage() {
   let values = []
     keys = Object.keys(localStorage)
