@@ -51,8 +51,6 @@ ul.navbar>li a:hover {
   padding: 8px;
   border: 1px solid black;
   border-radius: 8px;
-
-
 }
 
 .content {
@@ -69,6 +67,7 @@ ul.navbar>li a:hover {
 body {
   position: relative;
   margin: 0;
+  padding-bottom: 100px;
 }
 h2{
   font-size: xx-large;
@@ -116,15 +115,9 @@ form input[type="text"] , input[type="date"],  select {
 form button {
   padding: 1em 3em;
   margin: 1em 0 0 0;
-  border: none;
+  border: 20px;
   color: white;
   background-color: #125802;
-}
-form button:hover {
-  background-color: rgb(133, 254, 176);
-  color: black;
-  border-radius: 5px;
-  cursor: pointer;
 }
 form input[type="radio"] {
   cursor: pointer;
@@ -141,7 +134,7 @@ form fieldset {
   background-color: rgba(255, 0, 0, 0.769);
   color: white;
 }
-.rowx{
+.row1{
   display: flex;
 }
 
@@ -225,10 +218,10 @@ table button {
   grid-template-rows: auto;
   grid-template-areas: "cancel cancel delte delte";
 }
-#cancel {
+#annuler {
   grid-area: cancel;
   color: white;
-  background-color: #722076;
+  background-color: #203a76;
   border-radius: 10px;
 }
 #delete {
@@ -263,6 +256,3 @@ table button {
   border-radius: 10px;
   border: 4px solid #0707b8;
 }
-
-
-
