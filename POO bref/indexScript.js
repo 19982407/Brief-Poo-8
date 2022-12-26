@@ -7,8 +7,9 @@ class Item {
     this.date = date;
     this.type = type;
     this.radioCheck = radioCheck;
-    this.details = function () {
-      return ` <u>Detail du produit</u>  <br>Nom  :  ${this.name}<br>Marque :  ${this.marque}<br>Date : ${this.date}<br>Type: ${this.type}<br>Et en promotion : ${this.radioCheck}`;
+    this.modalproduct = function () {
+      return ` <b>Les informations de produit</b>  <br>Nom  :  ${this.name}<br>Marque :  ${this.marque}<br>
+      Date : ${this.date}<br>Type: ${this.type}<br>Et en promotion : ${this.radioCheck}`;
     };
     this.tab = function () {
       return [
@@ -18,7 +19,7 @@ class Item {
         this.date,
         this.type,
         this.radioCheck,
-        `<div class="rowx"><button id="remove${id}" onclick='remove(this)' class="remove">Supprimer</button><button onclick='edit(this);' id="add${id}" class="add">Edit</button></div>`,
+        `<div class="row1"><button id="remove${id}" onclick='remove(this)' class="remove">Supprimer</button><button onclick='edit(this);' id="add${id}" class="add">Modifier</button></div>`,
       ];
     };
   }
@@ -45,6 +46,7 @@ function save(tab) {
     document.getElementById("td" + id + i).innerHTML = tab[i];
   }
 }
+
 function resetform() {
   let name = (document.getElementById("name").value = "");
   let marque = (document.getElementById("marque").value = "");
@@ -75,9 +77,7 @@ function inputvalue() {
   ));
   
 }
-// ______________________________ Date maximum value __________________//
-date_de_production.max = new Date().toLocaleDateString("en-ca");
-// ______________________________ validation ___________________________//
+// ______________________________ validation et Regular expression ___________________________//
 function validation(item) {
   checkName(item.name);
   checkmarque(item.marque);
@@ -85,40 +85,62 @@ function validation(item) {
   let check = true;
   while (check) {
     if (checkName(item.name)) {
-      document.getElementById("errorName").classList.remove("error");
+      document.getElementById("ObligName").classList.remove("error");
     } else {
-      document.getElementById("errorName").classList.add("error");
+      document.getElementById("ObligName").classList.add("error");
     }
     if (checkmarque(item.marque)) {
-      document.getElementById("errorMarque").classList.remove("error");
+      document.getElementById("ObligMarque").classList.remove("error");
     } else {
-      document.getElementById("errorMarque").classList.add("error");
+      document.getElementById("ObligMarque").classList.add("error");
     }
     if (checkprix(item.prix)) {
-      document.getElementById("errorPrix").classList.remove("error");
+      document.getElementById("ObligPrix").classList.remove("error");
     } else {
-      document.getElementById("errorPrix").classList.add("error");
+      document.getElementById("ObligPrix").classList.add("error");
     }
     if (item.date == "") {
-      document.getElementById("errorDate").classList.add("error");
+      document.getElementById("ObligDate").classList.add("error");
     } else {
-      document.getElementById("errorDate").classList.remove("error");
+      document.getElementById("ObligDate").classList.remove("error");
     }
     if (item.radioCheck == undefined) {
-      document.getElementById("errorRadio").classList.add("error");
+      document.getElementById("ObligRadio").classList.add("error");
     } else {
-      document.getElementById("errorRadio").classList.remove("error");
+      document.getElementById("ObligRadio").classList.remove("error");
     }
     if (item.select == "") {
-      document.getElementById("errorSelec").classList.add("error");
+      document.getElementById("ObligSelec").classList.add("error");
     } else {
-      document.getElementById("errorSelec").classList.remove("error");
+      document.getElementById("ObligSelec").classList.remove("error");
     }
     check = false;
   }
   return item;
 }
-// ____________________________________ L'ordre alphabétique (SORT) __________________________//
+function checkName(name) {
+  let nameRegex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
+  let validename = nameRegex.test(name);
+  return validename;
+}
+function checkmarque(marque) {
+  let marqueRegex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
+  let validemarque = marqueRegex.test(marque);
+  return validemarque;
+}
+function checkprix(prix) {
+  let prixRegex = /^(^\d+([,.]?\d+$)?)$/;
+  let valideprix = prixRegex.test(prix);
+  return valideprix;
+}
+function getpromo(listpromo) {
+  for (let i = 0; i < listpromo.length; i++) {
+    if (listpromo[i].checked) {
+      return listpromo[i].value;
+    }
+  }
+}
+// ____________________________________ L'ordre alphabétique(Sort) __________________________//
 function sorttab() {
   let tab, rows, switching, i, x, y, shouldSwitch, cont;
   tab = document.getElementById("tab");
@@ -168,7 +190,7 @@ document.getElementById("button").onclick = function (e) {
 function modaleadd() {
   document.getElementById("modaleadd").style.display = "block";
   document.getElementById("modaleadd").style.display = "grid";
-  document.getElementById("mod-add").innerHTML = inputvalue().details();
+  document.getElementById("modal_add").innerHTML = inputvalue().modalproduct();
 }
 // ____________________________________ Supprimer ____________________________________//
 function remove(that) {
@@ -189,37 +211,14 @@ function remove(that) {
 function removstorag(that) {
   window.localStorage.removeItem(that);
 }
-document.getElementById("cancel").onclick = function () {
+document.getElementById("annuler").onclick = function () {
   document.getElementById("modaleremove").style.display = "none";
 };
 function modaleremove() {
   document.getElementById("modaleremove").style.display = "block";
   document.getElementById("modaleremove").style.display = "grid";
 }
-// _______________________ Regex validation ____________________________________//
-function checkName(name) {
-  let nameRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
-  let validename = nameRex.test(name);
-  return validename;
-}
-function checkmarque(marque) {
-  let marqueRex = /^(^[a-z]+['-\s]?[a-z]+)$/gi;
-  let validemarque = marqueRex.test(marque);
-  return validemarque;
-}
-function checkprix(prix) {
-  let prixRex = /^(^\d+([,.]?\d+$)?)$/;
-  let valideprix = prixRex.test(prix);
-  return valideprix;
-}
-function getpromo(listpromo) {
-  for (let i = 0; i < listpromo.length; i++) {
-    if (listpromo[i].checked) {
-      return listpromo[i].value;
-    }
-  }
-}
-// _________________________________ Editer _______________________
+// _________________________________ Editer _______________________//
 function edit(that) {
   let save = document.getElementById("save");
   let button = document.getElementById("button");
@@ -235,10 +234,10 @@ function edit(that) {
   for (let i = 0; i < tab.length - 2; i++) {
     inputtab[i].value = tab[i];
   }
-  if (tab[5] === "yes") {
-    document.getElementById("yes").checked = true;
-  } else if (tab[5] === "no") {
-    document.getElementById("no").checked = true;
+  if (tab[5] === "oui") {
+    document.getElementById("oui").checked = true;
+  } else if (tab[5] === "non") {
+    document.getElementById("non").checked = true;
   }
   save.onclick = function () {
     validation(inputvalue());
@@ -277,3 +276,5 @@ window.addEventListener("DOMContentLoaded", function () {
   }
   sorttab();
 });
+// ______________________________ Date maximum value __________________//
+date_de_production.max = new Date().toLocaleDateString("en-ca");
