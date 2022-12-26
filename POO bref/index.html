@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,13 +29,13 @@
         <fieldset>
         <legend>Produit</legend>
         <label for="name">Nom</label> <input id="name" type="text">
-        <p id="errorName"> *Remplir le formulaire</p>
+        <p id="ObligName"> *Remplir le formulaire</p>
         <label for="marque">Marque</label> <input type="text" id="marque">
-        <p id="errorMarque">*Remplir le formulaire</p>
+        <p id="ObligMarque">*Remplir le formulaire</p>
         <label for="prix">Prix</label><input type="text" id="prix">
-        <p id="errorPrix">*Remplir le formulaire</p>
+        <p id="ObligPrix">*Remplir le formulaire</p>
         <label for="production date">Date de production</label><input type="date" id="date_de_production">
-        <p id="errorDate">*Remplir le formulaire</p>
+        <p id="ObligDate">*Remplir le formulaire</p>
         <label for="type">Type</label><br>
         <select name="type" id="type">
             <option value="Hygiène et toilette">hygiène et toilette</option>
@@ -47,15 +46,15 @@
             <option value="Entretien capillaires">entretien capillaires</option>
             <option value="Parfums">parfums</option>
         </select>
-        <p id="errorSelec">*Remplir le formulaire</p>
+        <p id="ObligSelec">*Remplir le formulaire</p>
         <div id="radioCheck">
             <label>Et en promotion :</label>    
             <div class="rad">
-                <label for="yes"><input value="yes" type="radio" name="radioCheck" id="yes">Oui</label>
-                <label for="no"><input value="no" type="radio" name="radioCheck" id="no">Non</label>
+                <label for="oui"><input value="oui" type="radio" name="radioCheck" id="oui">Oui</label>
+                <label for="non"><input value="non" type="radio" name="radioCheck" id="non">Non</label>
             </div>
         </div>
-        <p id="errorRadio">*Remplir le formulaire </p>
+        <p id="ObligRadio">*Remplir le formulaire </p>
         <button id="button" type="button">Ajouter</button>
         <button type="button" id="save">sauvegarder</button>
     </fieldset>
@@ -80,15 +79,15 @@
             <h1>Supprimer le produit</h1>
             <p>êtes-vous sûr de vouloir supprimer?</p>
             <div id="allbutton">
-                <button id="cancel">Annuler</button>
-                <button id="delete" value="delte">Supprimer</button>
+                <button id="annuler">Annuler</button>
+                <button id="delete" value="delete">Supprimer</button>
             </div>
         </div>
     </div>
     <div id="modaleadd">
         <div class="container">
             <h2>le Produit </h2>
-            <div id="mod-add"></div>
+            <div id="modal_add"></div>
             <div id="allbutton">
                 <button id="hide">OK</button>
             </div>
